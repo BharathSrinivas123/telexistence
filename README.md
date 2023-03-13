@@ -1,85 +1,77 @@
-# Software QA Test Engineer Assignment
+# Software QA Test Engineer Assignment 
 
-## Context:
+## <b>Libraries and test filesused</b>
+The following libraries were used in order to develop and compile the main and test code.
+- yaml
+- argparse
+- logging
+- pytest
+<br> <br>With regards to the code development,the `cur_version.yaml` and `new_version.yaml` were created and used for testing purposes. Note that the `motor_config.yaml` file was used for testing after the development process was completed to ensure the code works as expected.
 
-As a Software Test Engineer, you will create test scripts to assess the functional
-quality of robot components. That requires you to have the ability to evaluate a
-feature to design relevant tests.
+## <b>Files and Design</b>
+### <u>main.py</u>
+This file contains the main code for processing the two YAML files. The code has 3 cases, namely the base, replace and force case. <br><br>
+Base Case <br>
+This code block follows the following parameters provided down below
+- If a field within the new is not present in `cur_version`, it should be
+  added to `cur_version` with its value set to the value from `new_version`.
+- If a field of `new_version` is present in `cur_version`, it should keep the
+  value from `cur_version`.
+- If a field of `cur_version` is not present in `new_version`, it should be
+  removed from `cur_version`. <br>
 
-This assignment aims to evaluate some of the following technical requirements:
-- Coding skill
-- Testing skill
+Replace Option<br>
+This block compares the values of the `cur_version` file with the `new_version` and replaces the values of the key if it exists. <br>
 
+Force Option<br>
+Force the update of `cur_version` by replacing the values of the currently existing fields with the values from `new_version` and adding or removing the fields, similar to the base case
 
-## Assignment
+### <u>main_test_reference.py</u>
+This file is exactly the same as the main.py source code, except that it does not include arg parameters. This replication is done such that it is easier to point the `test_main.py` file to this one for testing purposes, avoiding integration of args to the `test_main.py` file and thus making it overly complicated.
 
-Create an application that takes as an input two YAML files, `current_version`
-and `new_version`, and updates `current_version` as follows:
-- If a field of `new_version` is not present in `current_version`, it should be
-  added to `current_version` with its value set to the value from `new_version`.
-- If a field of `new_version` is present in `current_version`, it should keep the
-  value from `current_version`.
-- If a field of `current_version` is not present in `new_version`, it should be
-  removed from `current_version`.
+### <u>test_main.py</u>
+This file is the testing file that checks the validity of the `main.py` code, ensuring that it is running as expected.
+The three test cases provided are as follows.
+- test_base_Case - This test case checks that the following parameters are met:
+  - If a field of `new_version` is not present in `cur_version`, it should be
+  added to `cur_version` with its value set to the value from `new_version`.
+  - If a field of `new_version` is present in `cur_version`, it should keep the
+  value from `cur_version`.
+  - If a field of `cur_version` is not present in `new_version`, it should be
+  removed from `cur_version`.
+- test_replace_only - This test case checks to see if the fields in `cur_version` are updated and matched to the values of `new_version` and no other changes are done
+- test_force_only - This test case checks to see if values in `cur_version` are added/deleted or changed, based on the `new_version` file as well as updating the values of the keys in `cur_version`.
 
-In addition, the user can use optional arguments to:
-- Force the update of `current_version` by only replacing the values of the
-  currently existing fields with the values from `new_version`
-- Force the update of `current_version` by replacing the values of the currently
-  existing fields with the values from `new_version` and adding or removing the
-  fields according  to the requirement mentioned above.
+## <b>Execution of main.py file</b>
+The program is designed such that it run via the terminal. There are two optional arguments --replace and --force. If neither are provided, the base case will run. The following commands shown below is the syntax that should be used.
 
-Your application must be compatible with the provided `config.yaml`. We will use
-similar config files for the evaluation. You are free to create additional yaml
-files for your development or tests.
+```
+python main.py <current file> <new file> --replace --force --log <Parameter>
+```
+For the logging parameter, the following options can be used
+- DEBUG
+- INFO
+- WARNING
+- ERROR
 
-Your application must provide feedback to the user via a logger. The user can
-change the logging level by providing optional arguments. The error messages must
-be explicit enough for a non-developer to understand the problem.
+Lets say for example you want to run the force paramter, with INFO for the logs
+```
+python main.py curr_version.yaml new_version.yaml --force log-- INFO
+```
+where the `cur_version.yaml` and `new_version.yaml` files are the files that were used for testing and is stored in the current directory. Change these file names accordingly to the files you have stored and want to execute <br>
 
-In addition, you must provide tests that will assess the correct behaviour of the
-application. Your tests should, at least, verify all the requirements listed above.
+## <b>Execution of test_main.py file</b>
+In order to execute the test file, simply follow the following command in the terminal
+```
+pytest test_main.py
+```
+This will execute every test within the file. If you want to change the specific files to be tested, change the following values within this file to the name of your new files.
+- current_version = <Current_File.yaml>
+- new_version = <New_File.yaml>
 
-Finally, you must provide a way to install the application and all its dependencies
-and the documentation explaining how to use it.
-
-Coding requirement:
-- You must use Python (3.8 or more recent) for both the application and the tests
-- You must use a test framework such as [Pytest](https://docs.pytest.org/)
-- The documentation must be provide as a README
-
-Note:
-- You can use any yaml library such as [PyYaml](https://pyyaml.org/wiki/PyYAML)
-- You can use any logging library such as [daiquiri](https://daiquiri.readthedocs.io/en/latest/)
-
-
-We expected the test to takes about 2~4 hours to complete the assignment.
-
-
-## How to submit
-
-Your work needs to be available on a public repository. We should be able to
-install your application, its dependency, and we can run your application from a
-terminal.
-
-
-##  Evaluation
-
-We will clone the repository and install the application in our test environment.
-After analyzing your code, we will run your provided tests and the tests we have
-prepared.
-
-Your work will be evaluated according to the following criterias (list non-exhaustive):
-- The quality of your code, its clarity, its explicitness, and its structure
-- Does the applications meet all the requirements
-- The test coverage
-- How easy the install of the application is
-- How user-friendly is the application to use
-- The quality of the documentation
-
-> _Important note regarding the test coverage_:
->
-> We know that it is possible to create a multitude of tests of a single
-> application. Focus on the essential tests that you will find relevant and avoid
-> testing strange corner cases.
+To specify running a specific test case, run the following command in the terminal
+```
+pytest test_main.py::<name_of_test>
+```
+Note - Testing has been done with motor-config.yaml and all 3 test have passed
 
