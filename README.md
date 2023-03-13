@@ -58,16 +58,20 @@ Lets say for example you want to run the force paramter, with INFO for the logs
 ```
 python main.py curr_version.yaml new_version.yaml --force log-- INFO
 ```
-where the `cur_version.yaml` and `new_version.yaml` files are the files that were used for testing and is stored in the current directory. Change these file names accordingly to the files you have stored and want to execute <br>
+where the `cur_version.yaml` and `new_version.yaml` files are the files that were used for testing and is stored in the current directory.<b> Change these file names accordingly to the files you have stored and want to execute </b><br>
 
 ## <b>Execution of test_main.py file</b>
 In order to execute the test file, simply follow the following command in the terminal
 ```
 pytest test_main.py
 ```
-This will execute every test within the file. If you want to change the specific files to be tested, change the following values within this file to the name of your new files.
+This will execute every test within the file.<b> If you want to change the specific files to be tested, change the following values within this file to the name of your new files.</b>
 - current_version = <Current_File.yaml>
 - new_version = <New_File.yaml>
+
+![image](https://user-images.githubusercontent.com/35479198/224663574-aa8032a7-16ce-4411-be8c-32cc340772f0.png)
+Here is the first test case which shows the position of the file variables that would need to be changed according to your needs. <b>These two variables are in every test case so make sure to change them as well.</b>
+
 
 To specify running a specific test case, run the following command in the terminal
 ```
