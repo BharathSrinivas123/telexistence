@@ -71,4 +71,7 @@ To specify running a specific test case, run the following command in the termin
 ```
 pytest test_main.py::<name_of_test>
 ```
+Here is the result of a successfull test run 
+![image](https://user-images.githubusercontent.com/35479198/224661465-bc06f5c2-96c1-4553-8c55-cc27a4709144.png)
+
 Note - Testing has been done with motor-config.yaml and all 3 test have passed
