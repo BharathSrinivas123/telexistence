@@ -27,7 +27,7 @@ Force Option<br>
 Force the update of `cur_version` by replacing the values of the currently existing fields with the values from `new_version` and adding or removing the fields, similar to the base case
 
 ### <u>main_test_reference.py</u>
-This file is exactly the same as the main.py source code, except that it does not include arg parameters. This replication is done such that it is easier to point the `test_main.py` file to this one for testing purposes, avoiding integration of args to the `test_main.py` file and thus making it overly complicated.
+This file is exactly the same as the main.py source code, except that it does not include arg parameters. This replication is done such that it is easier to point the `test_main.py` file to this one for testing purposes, avoiding integration of args to the `test_main.py` file and thus avoid making the test file overly complicated.
 
 ### <u>test_main.py</u>
 This file is the testing file that checks the validity of the `main.py` code, ensuring that it is running as expected.
