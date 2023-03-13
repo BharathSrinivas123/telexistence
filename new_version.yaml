@@ -1,0 +1,10 @@
+app_name: my_app
+version: 1.1.0
+database:
+  host: localhost
+  port: 5432
+  name: my_db
+  username: my_user
+  password: my_password
+  pool_size: 10
+rumon: hi

@@ -1,0 +1,9 @@
+app_name: my_app
+version: 1.0.0
+database:
+  host: localhost
+  port: 5923
+  name: my_db
+  username: my_user
+  password: my_password
+delete: bye
