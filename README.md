@@ -1,4 +1,6 @@
 # Software QA Test Engineer Assignment 
+## <b>Installation</b>
+In order to run the code, simply clone this repository along with the following libraries down below in your local environment. Steps to how to run the main source code as well as the test script is explained down below, as well as the highlevel overview of the logic.
 ## <b>Libraries and test files used</b>
 The following libraries were used in order to develop and compile the main and test code.
 - yaml
